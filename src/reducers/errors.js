@@ -1,10 +1,10 @@
-import {FETCHED_COINS} from '../sagas'
+import { LOAD_ERROR } from '../actions/coins/fetch'
 
 export default (state = [], { type, payload } = {}) => {
   switch(type) {
-    case FETCHED_COINS :
+    case LOAD_ERROR :
       return [...payload]
-
+      
     default :
       return state
   }
