@@ -16,6 +16,6 @@ const store = createStore(reducer, enhancer)
 
 sagaMiddleware.run(rootSaga)
 
-export const action = type => store.dispatch({type})
+export const action = (type, payload = []) => store.dispatch({type, payload})
 
 export default store
