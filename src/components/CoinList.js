@@ -19,17 +19,23 @@ export class CoinList extends PureComponent {
     action('FETCH_MY_COINS')
   }
 
-  handleChange(event) {
-    const name = event.target.name
-    const value = event.target.value
+  handleChange(event, id, payload) {
+    const name = !!event.target.name ? event.target.name : "symbol"
+    const value = !!payload ? payload : event.target.value
     this.setState({
       [name]: value
     })
   }
 
+  handleClick = (coin) => event => action('DELETE_COIN', coin)
+
   handleSubmit(event) {
     const {symbol, amount} = this.state
-    action('SAVE_COINS', {symbol, amount})
+    action('SAVE_COIN', {symbol, amount})
+    this.setState({
+      symbol: '',
+      amount: ''
+    })
     event.preventDefault()
   }
 
@@ -41,7 +47,7 @@ export class CoinList extends PureComponent {
             <Form content={coins} contentValue="symbol" onChange={this.handleChange} onSubmit={this.handleSubmit} valueSelect={this.state.symbol} valueNumber={this.state.amount} />
           }
           {myCoins &&
-            myCoins.map((coin, index) => <Form key={index} content={myCoins} contentValue="symbol" onChange={this.handleChange} onSubmit={this.handleSubmit} valueSelect={coin.symbol} valueNumber={coin.amount} disabled="disabled" />)
+            myCoins.map((coin, index) => <Form key={index} content={myCoins} contentValue="symbol" onChange={this.handleChange} onClick={this.handleClick(coin)} onSubmit={this.handleSubmit} valueSelect={coin.symbol} valueNumber={coin.amount} />)
           }
         </div>
       )
