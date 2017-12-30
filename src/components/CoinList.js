@@ -1,12 +1,13 @@
 import React, {PureComponent} from 'react'
 import { connect } from 'react-redux'
 import { action } from '../store'
+import Form from './Form'
 
 export class CoinList extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      coin: '',
+      symbol: '',
       amount: ''
     }
 
@@ -15,6 +16,7 @@ export class CoinList extends PureComponent {
   }
   componentWillMount() {
     action('FETCH_COINS')
+    action('FETCH_MY_COINS')
   }
 
   handleChange(event) {
@@ -26,31 +28,26 @@ export class CoinList extends PureComponent {
   }
 
   handleSubmit(event) {
-    const {coin, amount} = this.state
-    action('SAVE_COINS', {coin, amount})
+    const {symbol, amount} = this.state
+    action('SAVE_COINS', {symbol, amount})
     event.preventDefault()
   }
 
   render() {
-    const {coins} = this.props.coins
+    const {coins, myCoins} = this.props
       return (
-        
-          <div className='CoinList'>
+        <div className='CoinList'>
           {coins &&
-          <form onSubmit={this.handleSubmit}>
-            <select name="coin" value={this.state.coin} onChange={this.handleChange}>
-              { coins.map((coin, index) => <option key={index} value={coin.symbol}>{coin.symbol}</option>)}
-            </select>
-            <input name="amount" type="number" step="0.00000001" value={this.state.amount} onChange={this.handleChange}/>
-            <input type="submit" value="Submit" />
-          </form>
+            <Form content={coins} contentValue="symbol" onChange={this.handleChange} onSubmit={this.handleSubmit} valueSelect={this.state.symbol} valueNumber={this.state.amount} />
           }
-          </div>
-        
+          {myCoins &&
+            myCoins.map((coin, index) => <Form key={index} content={myCoins} contentValue="symbol" onChange={this.handleChange} onSubmit={this.handleSubmit} valueSelect={coin.symbol} valueNumber={coin.amount} disabled="disabled" />)
+          }
+        </div>
       )
     }
 }
 
-const mapStateToProps = (coins) => ({ coins })
+const mapStateToProps = (state) => { return state }
 
 export default connect(mapStateToProps, null)(CoinList)
