@@ -1,0 +1,6 @@
+.Sidebar {  
+  flex: 1 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

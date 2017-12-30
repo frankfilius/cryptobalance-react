@@ -48,6 +48,4 @@ export class CoinList extends PureComponent {
     }
 }
 
-const mapStateToProps = (state) => { return state }
-
-export default connect(mapStateToProps, null)(CoinList)
+export default connect(state => state, null)(CoinList)
