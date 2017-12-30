@@ -32,7 +32,7 @@ export function* saveData(action) {
     "Content-type": "application/json"
   })
   try {
-    const data = yield call(fetchUrl, [host, '/coins'].join(''), { method: 'POST', headers: myHeaders, body: JSON.stringify(action.payload),  mode: 'no-cors' })
+    const data = yield call(fetchUrl, [host, '/coins'].join(''), { method: 'POST', headers: myHeaders, body: JSON.stringify(action.payload),  mode: 'cors' })
     yield put({type: "SAVED_COIN", payload: data})
   } catch (error) {
      yield put({type: "LOAD_ERROR", payload: error.message})
