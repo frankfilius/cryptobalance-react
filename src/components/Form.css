@@ -1,5 +1,22 @@
 .Form {
   width: '100%';
   display: flex;
-  flex-flow: row wrap
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.Form > div {
+  flex: 1 auto;
+}
+
+.button {
+  min-width: 0!important;
+}
+
+.button:hover #icon-minus {
+  color: #F44336!important
+}
+
+.button:hover #icon-plus {
+  color: #4CAF50!important
 }
