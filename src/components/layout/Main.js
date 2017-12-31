@@ -1,15 +1,19 @@
 import React, { PureComponent } from 'react'
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { connect } from 'react-redux'
+import Chart from '../Chart'
 import styles from './Main.css'
 
-export default class Sidebar extends PureComponent {
+export class Main extends PureComponent {
   render() {
+    const { coins, myCoins } = this.props
     return (
       <div className="Main">
-        <ResponsiveContainer width={700} height="80%" >
-        <h1>Graph</h1>
-        </ResponsiveContainer>
+      {coins.length > 0 && myCoins.length > 0 && 
+        <Chart data={this.props}/>
+      }
       </div>
     )
   }
 }
+
+export default connect(state => state, null)(Main)

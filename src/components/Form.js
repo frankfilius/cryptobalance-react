@@ -11,7 +11,7 @@ export default class Form extends PureComponent {
     return (
       <form className="Form" onSubmit={onSubmit}>
         <div>
-          <SelectField name="symbol" style={{width: 90}} value={valueSelect} onChange={onChange} >
+          <SelectField name="symbol" style={{width: 110}} value={valueSelect} onChange={onChange} >
             { content.map((item, index) => <MenuItem key={index} value={item[contentValue]} primaryText={item[contentValue]}/>)}
           </SelectField >
         </div>
