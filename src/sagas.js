@@ -25,7 +25,7 @@ export function* deleteCoin(action) {
 
 export function* fetchCoins() {
   try {
-    const data = yield call(fetchUrl, 'https://api.coinmarketcap.com/v1/ticker/?limit=100')
+    const data = yield call(fetchUrl, 'https://api.coinmarketcap.com/v1/ticker/?limit=100', {mode: 'no-cors'})
     yield put({type: "FETCHED_COINS", payload: data})
   } catch (error) {
      yield put({type: "LOAD_ERROR", payload: error.message})
@@ -43,7 +43,7 @@ export function* fetchMyCoins() {
 
 export function* saveData(action) {
   try {
-    const data = yield call(fetchUrl, [host, '/coins'].join(''), { method: 'POST', headers: myHeaders, body: JSON.stringify(action.payload),  mode: 'cors' })
+    const data = yield call(fetchUrl, [host, '/coins'].join(''), { method: 'POST', headers: myHeaders, body: JSON.stringify(action.payload),  mode: 'no-cors' })
     yield put({type: "SAVED_COIN", payload: data})
   } catch (error) {
      yield put({type: "LOAD_ERROR", payload: error.message})
