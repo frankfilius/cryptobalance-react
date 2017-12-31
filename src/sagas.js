@@ -9,6 +9,20 @@ const host = process.env.NODE_ENV === 'production'
       ? 'https://cryptobalance-api.herokuapp.com'
       : 'http://localhost:3030'
 
+const myHeaders = new Headers({
+  "Content-type": "application/json"
+})
+
+export function* deleteCoin(action) {
+  const coinId = action.payload._id
+  try {
+    const data = yield call(fetchUrl, [host, `/coins/${coinId}`].join(''), { headers: myHeaders, method: 'delete' })
+    yield put({type: "FETCHED_MY_COINS", payload: data})
+  } catch (error) {
+      yield put({type: "LOAD_ERROR", payload: error.message})
+  }
+}
+
 export function* fetchCoins() {
   try {
     const data = yield call(fetchUrl, 'https://api.coinmarketcap.com/v1/ticker/?limit=100')
@@ -28,9 +42,6 @@ export function* fetchMyCoins() {
 }
 
 export function* saveData(action) {
-  var myHeaders = new Headers({
-    "Content-type": "application/json"
-  })
   try {
     const data = yield call(fetchUrl, [host, '/coins'].join(''), { method: 'POST', headers: myHeaders, body: JSON.stringify(action.payload),  mode: 'cors' })
     yield put({type: "SAVED_COIN", payload: data})
@@ -43,5 +54,6 @@ export function* saveData(action) {
 export default function* rootSaga() {
   yield takeEvery('FETCH_COINS', fetchCoins)
   yield takeEvery('FETCH_MY_COINS', fetchMyCoins)
-  yield takeEvery('SAVE_COINS', saveData)
+  yield takeEvery('SAVE_COIN', saveData)
+  yield takeEvery('DELETE_COIN', deleteCoin)
 }

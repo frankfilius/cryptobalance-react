@@ -1,6 +1,7 @@
 .Main {
-  flex: 2 auto;
+  flex: 3 auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  padding: 50px
 }
