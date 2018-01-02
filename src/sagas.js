@@ -2,6 +2,7 @@ import { call, put, take, takeEvery } from 'redux-saga/effects'
 export const FETCHED_COINS = 'FETCHED_COINS'
 export const FETCHED_MY_COINS = 'FETCHED_MY_COINS'
 export const SAVED_COIN = 'SAVED_COIN'
+export const DELETED_COIN = 'DELETED_COIN'
 
 const fetchUrl = (url, config = {}) => fetch(url, config).then(res => res.json())
 
@@ -17,7 +18,7 @@ export function* deleteCoin(action) {
   const coinId = action.payload._id
   try {
     const data = yield call(fetchUrl, [host, `/coins/${coinId}`].join(''), { headers: myHeaders, method: 'delete' })
-    yield put({type: "FETCHED_MY_COINS", payload: data})
+    yield put({ type: 'DELETED_COIN', payload: data })
   } catch (error) {
       yield put({type: "LOAD_ERROR", payload: error.message})
   }

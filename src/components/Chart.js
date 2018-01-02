@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Label, LabelList, Legend, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
 
 export default class Chart extends PureComponent {
   render() {
@@ -10,26 +10,34 @@ export default class Chart extends PureComponent {
       rObj["amount"] = myCoin.amount
       coins.map(coin => {
         if (coin.symbol === myCoin.symbol) {
-          return rObj["value"] = coin.price_usd
+          rObj["value"] = coin.price_usd
+          rObj["last_week"] = coin.percent_change_7d
         }
       })
       rObj["total"] = rObj["amount"] * rObj["value"]
+      if (Math.sign(rObj["last_week"]) === 1) {
+        rObj["total_last_week"] = rObj["total"] + (rObj["total"] * (rObj["last_week"] / 100))
+      } else {
+        rObj["total_last_week"] = rObj["total"] - (rObj["total"] * (rObj["last_week"] / 100))
+      }
       return rObj
     })
-    console.log(dataSet)
 
     return (
       <div className="Chart">
       <h1>Chart</h1>
       <ResponsiveContainer width={700} height="80%">
         <BarChart data={dataSet}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="symbol" />
-          <YAxis />
+          <XAxis dataKey="symbol">
+            <Label value="Coins I own" offset={0} position="insideBottom" />
+          </XAxis>
+          <YAxis label={{ value: 'value in $', angle: -90, position: 'insideLeft' }}/>
           <Tooltip />
           <Legend />
-          <Bar dataKey="total" fill="#1976D2" />
-          <Bar dataKey="uv" fill="#BBDEFB" />
+          <Bar name="Today" dataKey="total" unit="$" fill="#1976D2" >
+           <LabelList dataKey="total" position="top" />
+          </Bar>
+          <Bar name="Last Week" dataKey="total_last_week" unit="$" fill="#BBDEFB" />
         </BarChart>
       </ResponsiveContainer>
       </div>
