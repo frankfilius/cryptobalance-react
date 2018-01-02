@@ -7,7 +7,7 @@
 
 make sure:
  * you have [Yarn](https://yarnpkg.com/en/) and [NodeJS](https://nodejs.org/en/) installed.
- * the [backend](https://github.com/ff05/evaluation-tool-api) up and running
+ * the [backend](https://bitbucket.org/cryptobalance/cryptobalance-api) up and running
 
 ```bash
 git clone git@bitbucket.org:cryptobalance/cryptobalance.git
