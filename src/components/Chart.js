@@ -34,9 +34,7 @@ export default class Chart extends PureComponent {
       <h2 style={{color: '#b1b1b1'}}>Last Week: $ {totalAllPW}</h2>
       <ResponsiveContainer width={700} height="60%">
         <BarChart data={dataSet || []}>
-          <XAxis dataKey="symbol">
-            <Label value="Coins I own" offset={0} position="insideBottom" />
-          </XAxis>
+          <XAxis dataKey="symbol" />
           <YAxis label={{ value: 'value in $', angle: -90, position: 'insideLeft' }}/>
           <Tooltip />
           <Legend verticalAlign="top"/>
