@@ -1,8 +1,10 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { createMuiTheme } from 'material-ui/styles'
 
 // Colors
-export const green        = '#00AA86'
-export const red          = '#D32F2F'
+export const green        = '#4CAF50'
+export const lightGreen   = '#C8E6C9'
+export const red          = '#F44336'
+export const lightRed     = '#FFCDD2'
 export const darkRed      = '#C1272D'
 export const white        = '#ffffff'
 export const black        = '#000000'
@@ -24,4 +26,4 @@ export const palette = {
   disabledColor: grey30
 }
 
-export default getMuiTheme({ palette })
+export default createMuiTheme({ palette })

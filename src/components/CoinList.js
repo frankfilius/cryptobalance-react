@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 import { connect } from 'react-redux'
 import { action } from '../store'
 import Form from './Form'
+import ListCoins from './ListCoins'
 import styles from './CoinList.css'
 
 export class CoinList extends PureComponent {
@@ -54,7 +55,7 @@ export class CoinList extends PureComponent {
             <Form content={coins} contentValue="symbol" onChange={this.handleChange} onSubmit={this.handleSubmit} valueSelect={this.state.symbol} valueNumber={this.state.amount} />
           }
           {myCoins.length > 0 &&
-            myCoins.map((coin, index) => <Form key={index} content={[coin]} contentValue="symbol" onChange={this.handleChange} onClick={this.handleClick(coin)} onSubmit={this.handleSubmit} valueSelect={coin.symbol} valueNumber={coin.amount} />)
+            myCoins.map((coin, index) => <ListCoins key={index} content={coins} contentValue="symbol" onChange={this.handleChange} onClick={this.handleClick(coin)} onSubmit={this.handleSubmit} valueSelect={coin.symbol} valueNumber={coin.amount} />)
           }
         </div>
       )

@@ -1,4 +1,4 @@
-import { LOAD_ERROR } from '../actions/coins/fetch'
+import { LOAD_ERROR } from '../sagas'
 
 export default (state = [], { type, payload } = {}) => {
   switch(type) {
