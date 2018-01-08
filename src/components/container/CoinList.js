@@ -1,8 +1,7 @@
 import React, {PureComponent} from 'react'
 import { connect } from 'react-redux'
-import { action } from '../store'
-import Form from './Form'
-import ListCoins from './ListCoins'
+import { action } from '../../store'
+import Form from '../presentational/Form'
 import styles from './CoinList.css'
 
 export class CoinList extends PureComponent {
@@ -45,17 +44,16 @@ export class CoinList extends PureComponent {
     const {coins, myCoins} = this.props
       return (
         <div className='CoinList'>
-          <h1>CoinList</h1>
-          <div className="headers">
-            <p>Coin:</p>
-            <p>Amount:</p>
-            <p></p>
-          </div>
-          {coins.length > 0 &&
-            <Form content={coins} contentValue="symbol" onChange={this.handleChange} onSubmit={this.handleSubmit} valueSelect={this.state.symbol} valueNumber={this.state.amount} />
-          }
-          {myCoins.length > 0 &&
-            myCoins.map((coin, index) => <ListCoins key={index} content={coins} contentValue="symbol" onChange={this.handleChange} onClick={this.handleClick(coin)} onSubmit={this.handleSubmit} valueSelect={coin.symbol} valueNumber={coin.amount} />)
+          { coins.length > 0 &&
+            <Form 
+              loopItems={coins} 
+              itemValue="symbol" 
+              input=""
+              onChange={this.handleChange} 
+              onSubmit={this.handleSubmit} 
+              valueSelect={this.state.symbol} 
+              valueInput={this.state.amount} 
+            />
           }
         </div>
       )
