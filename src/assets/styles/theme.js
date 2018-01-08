@@ -1,4 +1,5 @@
 import { createMuiTheme } from 'material-ui/styles'
+import 'typeface-roboto'
 
 // Colors
 export const green        = '#4CAF50'

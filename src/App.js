@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import CoinList from './components/CoinList'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import muiTheme from './assets/styles/theme'
-import Main from './components/layout/Main'
-import Sidebar from './components/layout/Sidebar'
+import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles'
+import Main from './components/presentational/Main'
+import Sidebar from './components/presentational/Sidebar'
 import styles from './App.css'
 
+const theme = createMuiTheme()
 
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
           <Sidebar />
           <Main />
