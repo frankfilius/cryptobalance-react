@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Typography from 'material-ui/Typography'
 
+
+
 export default function MuiTypography(props) {
   return (
     <Typography type={props.type} gutterBottom>
@@ -11,6 +13,6 @@ export default function MuiTypography(props) {
 }
 
 MuiTypography.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.string.isRequired,
   type: PropTypes.string
 }

@@ -9,6 +9,6 @@ export default function MuiIcon(props) {
 }
 
 MuiIcon.propTypes = {
-  icon: PropTypes.object.isRequired,
+  icon: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired
 }

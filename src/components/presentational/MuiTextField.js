@@ -4,12 +4,11 @@ import TextField from 'material-ui/TextField'
 
 export default function MuiTextField(props) {
   return (
-    <TextField>
-      {props.children}
-    </TextField>
+    <TextField value={props.value} onChange={props.onChange} />
   )
 }
 
 MuiTextField.propTypes = {
-  children : PropTypes.element
+  value : PropTypes.string,
+  onChange: PropTypes.function
 }

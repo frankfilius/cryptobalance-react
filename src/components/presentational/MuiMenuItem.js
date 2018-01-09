@@ -11,6 +11,5 @@ export default function MuiMenuItem(props) {
 }
 
 MuiMenuItem.propTypes = {
-  key: PropTypes.number.isRequired,
   value: PropTypes.string.isRequired
 }
