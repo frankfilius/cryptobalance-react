@@ -1,7 +1,13 @@
 import React, {PureComponent} from 'react'
 import { connect } from 'react-redux'
 import { action } from '../../store'
+import { InputLabel } from 'material-ui/Input'
 import Form from '../presentational/Form'
+import MuiIcon from '../presentational/MuiIcon'
+import MuiMenuItem from '../presentational/MuiMenuItem'
+import MuiSelect from '../presentational/MuiSelect'
+import MuiTextField from '../presentational/MuiTextField'
+import MuiButton from '../presentational/MuiButton'
 import styles from './CoinList.css'
 
 export class CoinList extends PureComponent {
@@ -45,15 +51,32 @@ export class CoinList extends PureComponent {
       return (
         <div className='CoinList'>
           { coins.length > 0 &&
-            <Form 
-              loopItems={coins} 
-              itemValue="symbol" 
-              input=""
-              onChange={this.handleChange} 
-              onSubmit={this.handleSubmit} 
-              valueSelect={this.state.symbol} 
-              valueInput={this.state.amount} 
-            />
+            <Form onSubmit={this.handleSubmit} >
+              <MuiSelect 
+                value={this.state.symbol} 
+                onChange={this.handleChange}
+                inputLabel={<InputLabel htmlFor="coin">Asset</InputLabel>}
+              >
+                { 
+                  coins.map((item, index) => {
+                    return (
+                      <MuiMenuItem key={index} value={item.symbol} />
+                    )
+                  })
+                }
+              </MuiSelect>
+              <MuiTextField 
+                name="amount" 
+                type="number" 
+                step="0.00000001" 
+                style={{minWidth: 80}} 
+                value={this.state.amount} 
+                onChange={this.handleChange} 
+              />
+              <MuiButton>
+                <MuiIcon color="accent" icon="add" />
+              </MuiButton>
+            </Form>
           }
         </div>
       )

@@ -7,7 +7,7 @@ export default class Sidebar extends PureComponent {
   render() {
     return (
       <div className="Sidebar">
-        <MuiTypography />
+        <MuiTypography type="display2">CoinList</MuiTypography>
         <CoinList />
       </div>
     )
