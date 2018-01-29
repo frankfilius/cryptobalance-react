@@ -50,7 +50,7 @@ export class CoinList extends PureComponent {
     const {coins, myCoins} = this.props
       return (
         <div className='CoinList'>
-          { coins.length > 0 &&
+          { coins.length > 0 &&                                               
             <Form onSubmit={this.handleSubmit} >
               <MuiSelect 
                 value={this.state.symbol} 
